@@ -1,0 +1,8 @@
+.unoSlider,.unoSlider ul,.unoSlider .sliderView { width: 300px; }
+.unoSlider ul,.unoSlider .sliderView { min-height: 120px; }
+.unoSlider ul { list-style: none; overflow: hidden; position: relative; }
+.unoSliderNav span { color: #ccc; cursor: pointer; font-size: 44px; khtml-user-select: none; margin-right: 0; moz-user-select: none; ms-user-select: none; o-user-select: none; user-select: none; webkit-user-select: none; }
+.unoSliderNav span:hover, .unoSliderNav span:active { color: #999;}
+.unoSliderNav span.current { color: #f09; }
+.unoSlider .sliderView { left: 1000px; opacity: 0; position: absolute; top: 0; }
+.unoSlider .sliderView.current { left: 0; opacity: 1; }
