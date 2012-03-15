@@ -30,7 +30,7 @@
 	<link rel="stylesheet" href="css/main.min.css?v=1" type="text/css" media="screen" />
 	<link rel="stylesheet" href="css/unoSlider.min.css" type="text/css" media="screen" />
 </head> <body>
-
+<div id="fb-root"></div>
 <div class="ad">
 	<script type="text/javascript"><!--
 	google_ad_client = "ca-pub-8986945174197010";
@@ -49,7 +49,7 @@
 	
 	<h1 class="maintitle"><span>uno</span>Slider</h1>
 
-	<div id="slider2">
+	<div id="slider2" class="unoSlider">
 		<ul>
 			<li class="current">
 				<img src="img/sum_hood.jpg" alt="sum_hood" width="960" height="408" />
@@ -70,13 +70,21 @@
 		<div class="unoSliderNav">
 				<div class="sliderNavText"><a id="slider2Back" href="#">Back</a><a id="slider2Next" href="#">Next</a></div>
 		</div>
+		<div class="download-banner" src="#">Free Download</div>
+		<a class="download-btn" href="#" title="Download Uno Slider &raquo; 2KB Zip">v1.0 (2KB ZIP)</a>
 	</div><!-- #slider2 -->
 
 
+	<div class="block sharebar">
+		<a href="https://twitter.com/share" class="twitter-share-button" data-via="npolanco10">Tweet</a>
+		<div class="fb-like" data-send="false" data-layout="button_count" data-width="80" data-show-faces="false" data-font="lucida grande"></div>
+
+		
+
+	</div><!-- .sharebar -->
 
 
-
-	<div id="ticker" class="block">
+	<div id="ticker" class="block unoSlider">
 		<div class="ticker-title">Breaking News</div>
 		<ul>
 			<li class="current"><a href="#">Soulcalibur 5 Review: A Tale of Swords and Swords that WILL be eternally retold!</a></li>
@@ -89,7 +97,7 @@
 
 
 	<div class="clr columns">
-		<div id="slider1" class="col">
+		<div id="slider1" class="col unoSlider">
 			<div class="slider-header">
 				<span>Beauty Tips</span>
 				<div class="unoSliderNav"></div>
@@ -121,7 +129,7 @@
 			</ul>
 		</div><!-- #slider1 -->
 		
-		<div id="slider3" class="col">
+		<div id="slider3" class="col unoSlider">
 			<div class="slider-header">
 				<span>No Nav + Auto</span>
 			</div>
@@ -152,7 +160,7 @@
 			</ul>
 		</div><!-- #slider3 -->
 	
-		<div id="slider4" class="col last">
+		<div id="slider4" class="col last unoSlider">
 			<div class="slider-header">
 				<span>No Trasition + Auto</span>
 			</div>
@@ -194,9 +202,23 @@
 			
 		</ul><!-- .tabs -->
 		
-		<ul class="tab-content nobullets">
+		<ul class="tab-content nobullets unoSlider">
 			<li id="tab-usage">
-				<h4>Basic Slider</h4>
+				<h4 class="section-heading">Basic Slider</h4>
+
+				<p>For starters, add the CSS to the <em>head</em> of your document</p>
+				<pre>&lt;link rel="stylesheet" href="css/unoSlider.min.css" type="text/css" media="screen" /&gt</pre>
+
+				<p>Second, include jQuery and the unoSlider scripts to the bottom of the html right before you close out the body:</p>
+
+				<pre>...
+
+&lt;script src="js/jquery-1.7.1.min.js"&gt;&lt;/script&gt;
+&lt;script src="js/unoSlider-1.0.min.js"&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</pre> 
+
 				<p>A basic unoSlider only requires the following HTML pattern:</p>
 				
 				<pre>
@@ -208,33 +230,44 @@
   &lt;/ul&gt;
 &lt;/div&gt;</pre>
 				
-				<p>Any content within the li tags will be a slide panel. The class of "current" is given to the first slide so that the first slide is viewable while the page loads.</p>
+				<p>Any content within the li tags will be a slide panel. The class of "<em>current</em>" is given to the first slide so that the first slide is viewable while the page loads.</p>
 				
 				<p>You would then initiate the plugin in the following manner:</p>
 				
-<pre>
-$('#sliderId').unoSlider();</pre>
+<pre>... 
 
-				<p>This gives you a slider with all autoplay set to 5 seconds (the default).</p>
+&lt;script src="js/jquery-1.7.1.min.js"&gt;&lt;/script&gt;
+&lt;script src="js/unoSlider-1.0.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+	$(document).ready(function() {
+		// My Uno Slider
+		window.unoSlider = $('#sliderId').unoSlider();
+	});
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+
+				<p>This gives you a slider which will autoplay. Next slide every 5 seconds (the default).</p>
 				
 				
-				<h4>Slider With Nav</h4>
+				<h4 class="section-heading">Slider With Nav</h4>
 				<p>If you would like to add a bulleted nav to you slider, simply include a div with a class of "unoSliderNav" anywhere within your slider container.</p>
 
 				<pre>
 &lt;div id="sliderId"&gt;
-&lt;div class="unoSliderNav"&gt;&lt;/div&gt;
-  &lt;ul&gt;
-    &lt;li class="current"&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;/li&gt;
-  &lt;/ul&gt;
+	&lt;div class="unoSliderNav"&gt;&lt;/div&gt;
+	&lt;ul&gt;
+		&lt;li class="current"&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;/li&gt;
+	&lt;/ul&gt;
 &lt;/div&gt;</pre>
 				
 			</li> <!-- #tab-usage -->
 			
 			<li id="tab-options">
-				<h4>Plugin Options</h4>
+				<h4 class="section-heading">Plugin Options</h4>
 				<p>Any of the following options can be passed in to alter the behavior of the slider. </p>
 				<pre>
 animSpeed:  250,
@@ -251,9 +284,29 @@ callback:   function()
 			</li> <!-- #tab-api -->
 			
 			<li id="tab-api">
-				<h4>API Documentation</h4>
+				<h4 class="section-heading">API Documentation</h4>
 				<p>There are several functions exposed globally with unoSlider so that you have more control of the slider.</p>
 					<dl>
+						<dt>initialize</dt>
+							<dd><strong>params:</strong> none</dd>
+							<dd><strong>Usage:</strong> <em>unoSlider.initialize()</em></dd>
+							<dd>Sets up the slider for first time user.</dd>
+
+						<dt>startTimer</dt>
+							<dd><strong>params:</strong> none</dd>
+							<dd><strong>Usage:</strong> <em>unoSlider.startTimer()</em></dd>
+							<dd>Start the auto rotating timer for the slider.</dd>
+
+						<dt>killTimer</dt>
+							<dd><strong>params:</strong> none</dd>
+							<dd><strong>Usage:</strong> <em>unoSlider.killTimer()</em></dd>
+							<dd>Stops the auto rotating timer for the slider.</dd>
+
+						<dt>resetTimer</dt>
+							<dd><strong>params:</strong> none</dd>
+							<dd><strong>Usage:</strong> <em>unoSlider.resetTimer()</em></dd>
+							<dd>Resets the auto rotating timer for the slider.</dd>
+
 						<dt>goForward</dt>
 							<dd><strong>params:</strong> none</dd>
 							<dd><strong>Usage:</strong> <em>unoSlider.goForward()</em></dd>
@@ -267,7 +320,7 @@ callback:   function()
 						<dt>goTo</dt>
 							<dd><strong>params:</strong> number</dd>
 							<dd><strong>Usage:</strong> <em>unoSlider.goTo(1)</em></dd>
-							<dd>Makes the slider go to the slide number (not the index) that was passed in to the function.</dd>
+							<dd>Makes the slider go to the slide number &mdash; <em>this is not the 0 based index but the actual slide number</em>.</dd>
 					</dl>
 			</li> <!-- #tab-api -->
 			
@@ -277,7 +330,7 @@ callback:   function()
 	</div><!-- #documentation -->
 	
 	<div id="content-footer">
-		<p class="disclaimer">Content images generously provided by <a href="http://sumless.tumblr.com/" target="_blank" rel="no-follow">Sumtography</a> | &copy; Sumtography. All rights reserved.</p>
+		<p class="disclaimer">Slider images generously provided by <a href="http://sumless.tumblr.com/" target="_blank" rel="no-follow">Sumtography</a> | &copy; Sumtography. All rights reserved.</p>
 	</div>
 	
 
@@ -299,6 +352,14 @@ $(document).ready(function() {
   window.npSlide = $('#slider1').unoSlider(); //default 5 seconds
 }); //ready
 </script>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
 <!-- ASync Tracking -->
 <script type="text/javascript">
