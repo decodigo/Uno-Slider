@@ -1,11 +1,16 @@
 <?php 
-	$siteinfo = array(
+	include_once 'functions.php';
+	$info = array(
         'title'         => 'unoSlider',
         'tagline'       => 'Lightweight jQuery Content Slider',
-        'description'   => 'A jQuery plugin for creating a simple, yet elegant and versatile content slider.',
-        'url'           => 'http://unoslider.npmedia.net'
-		);
+        'description'   => 'A jQuery plugin for creating simple, yet elegant and versatile content sliders.',
+        'url'           => 'http://unoslider.npmedia.net',
+        'currVersion'   => '1.0.1',
+        'siteurl'       => "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']
+	);
 
+	$downloadurl = 'downloads/unoSlider-'.$info["currVersion"].'.zip';
+	$downloadsize = formatbytes($downloadurl, "KB");
 ?><!doctype html>
 <!--[if IE 7 ]>    <html class="no-js ie7" > <![endif]-->
 <!--[if IE 8 ]>    <html class="no-js ie8" > <![endif]-->
@@ -13,18 +18,19 @@
 <head>
 	<!--META-->
 	<meta charset="utf-8">
-	<meta name="description" content="<?php echo $siteinfo['description']; ?>">
+	<meta name="description" content="<?php echo $info['description']; ?>">
 	<meta name="author" content="Nelson Polanco">
 	
 	<!-- FB Meta -->
-	<meta property="og:title" content="<?php echo $siteinfo['title']; ?> | <?php echo $siteinfo['tagline']; ?>" />
-	<meta property="og:description" content="<?php echo $siteinfo['description']; ?>" />
+	<meta property="og:title" content="<?php echo $info['title']; ?> | <?php echo $info['tagline']; ?>" />
+	<meta property="og:description" content="<?php echo $info['description']; ?>" />
 	<meta property="og:type" content="website" />
-	<meta property="og:url" content="<?php echo $siteinfo['url']; ?>" />
-	<meta property="og:image" content="<?php echo $siteinfo['url']; ?>/img/icon110x110.png" />
+	<meta property="og:url" content="<?php echo $info['url']; ?>" />
+	<meta property="og:image" content="<?php echo $info['url']; ?>/img/icon110x110.png" />
+	<meta property="fb:admins" content="npolanco10" />
 	
 	<!--TITLE-->
-	<title><?php echo $siteinfo['title']; ?> | <?php echo $siteinfo['tagline']; ?></title>
+	<title><?php echo $info['title']; ?> | <?php echo $info['tagline']; ?></title>
 	<!--STYLES-->
 	<link href='http://fonts.googleapis.com/css?family=Sarina' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="css/main.min.css?v=1" type="text/css" media="screen" />
@@ -71,18 +77,82 @@
 				<div class="sliderNavText"><a id="slider2Back" href="#">Back</a><a id="slider2Next" href="#">Next</a></div>
 		</div>
 		<div class="download-banner" src="#">Free Download</div>
-		<a class="download-btn" href="#" title="Download Uno Slider &raquo; 2KB Zip">v1.0 (2KB ZIP)</a>
+		<a class="download-btn" href="<?php echo $downloadurl; ?>" title="Download UnoSlider &raquo; <?php echo $downloadsize; ?> Zip">v<?php echo $info['currVersion']; ?> ( <?php echo $downloadsize; ?> ZIP)</a>
 	</div><!-- #slider2 -->
 
+	<div class="clr columns">
+		<div id="slider1" class="col unoSlider">
+			<div class="slider-header">
+				<span>unoSlider Features</span>
+				<div class="unoSliderNav"></div>
+			</div>
+			<ul>
+				<li class="current">
+					<b>Feature any content</b><br>
+					unoSlider works with videos, iframes and any other html element. 
+				</li>
+					
+				<li>
+					<b>Simple...</b><br>
+					unoSlider's limited transitions and options keeps things simple so that you are able to get a slider going fast. 
+				</li>
+				
+				<li>
+					<b>..yet powerful</b><br>
+					unoSlider can be used for news tickers, tabbed interfaces and featured content sliders.
+				</li>
 
-	<div class="block sharebar">
-		<a href="https://twitter.com/share" class="twitter-share-button" data-via="npolanco10">Tweet</a>
-		<div class="fb-like" data-send="false" data-layout="button_count" data-width="80" data-show-faces="false" data-font="lucida grande"></div>
-
+				<li>
+					<b>Light Weight</b><br>
+					Small yet versatile, unoSlider falls in at just under 2KB. 		
+				</li>
+					
+				<li>
+					<b>Dynamic Bulleted Navigation</b><br>
+					The bulleted navigation is generated dynamically for you when the slider gets initialized. 
+				</li>				
+			</ul>
+		</div><!-- #slider1 -->
 		
-
-	</div><!-- .sharebar -->
-
+		<div id="slider3" class="col unoSlider">
+			<div class="slider-header">
+				<span>No Nav + Auto</span>
+			</div>
+			<ul class="nobullets">
+				<li class="current">
+					<b>No nav</b><br>
+					The nav can be left out if you don't need it. 
+				</li>
+				<li>
+					<b>Cycle Automatically</b><br>
+					You can toggle wether you cycle through the slider automatically.
+				</li>
+				<li>
+					<b>Fast or Slow</b><br>
+					The speed for the animation and the timer can both be set manually. 
+				</li>
+					
+			</ul>
+		</div><!-- #slider3 -->
+	
+		<div id="slider4" class="col last unoSlider">
+			<div class="slider-header">
+				<span>No Trasition + Auto</span>
+			</div>
+			<ul>
+				<li class="current">
+					<b>But I don't want it to Slide!</b><br>
+					That's cool, you can easily adjust that too. 
+				</li>
+				<li>
+					<b>Full Control</b><br>
+					Play, Pause, Next, Previous... you have control of the player and can add your own buttons for this functionality.
+				</li>
+			</ul>
+		</div><!-- #slider4 -->
+	
+	</div><!-- .columns -->
+	
 
 	<div id="ticker" class="block unoSlider">
 		<div class="ticker-title">Breaking News</div>
@@ -93,106 +163,15 @@
 		</ul>
 	</div>
 
+	<p class="intro">
+		UnoSlider is a jQuery plugin for creating simple, yet elegant and versatile content sliders. It's great for when you need to get a slider going in a jiffy, yet it has enough depth to create news tickers and tabs like the ones you see on this page. All whithout overwhelming you with options and features you don't need. 
+	</p>
 
 
 
-	<div class="clr columns">
-		<div id="slider1" class="col unoSlider">
-			<div class="slider-header">
-				<span>Beauty Tips</span>
-				<div class="unoSliderNav"></div>
-			</div>
-			<ul>
-				<li class="current">
-					<b>Necklace Know-How</b><br>Not sure how long of a necklace to wear? The pendant should drop on the collarbone for a demure look. If you're feeling really sexy, try a longer chain that goes down to your décolletage.
-				</li>
-					
-				<li>
-					<b>Enhance Your Eyes</b><br>
-					Are your eyes your best feature? Match your gemstones to your eye color to accentuate that special sparkle in your eye
-				 </li>
-					
-				<li>
-					<b>Get Eclectic</b><br>
-					Matching your earrings to your necklace is always elegant; but don't be afraid to mix things up with different colors and textures!
-				</li>
-				
-				<li>
-					<b>Instant Glamour</b><br>
-					Transform your little black dress with a hit of sparkly color. A bold pendant necklace or colorful earrings add effortless flair to a simple chic outfit.
-				</li>
-				
-				<li>
-					<b>Go Green!</b><br>
-					Angelina Jolie, Reese Witherspoon, and Amy Adams are just a few celebrities who have recently sported gorgeous emerald earrings on the red carpet. Green gemstones are eye-catching and a hot color for this spring.			
-				</li>
-			</ul>
-		</div><!-- #slider1 -->
-		
-		<div id="slider3" class="col unoSlider">
-			<div class="slider-header">
-				<span>No Nav + Auto</span>
-			</div>
-			<ul class="nobullets">
-				<li class="current">
-					<b>Necklace Know-How</b><br>Not sure how long of a necklace to wear? The pendant should drop on the collarbone for a demure look. If you're feeling really sexy, try a longer chain that goes down to your décolletage.
-				</li>
-					
-				<li>
-					<b>Enhance Your Eyes</b><br>
-					Are your eyes your best feature? Match your gemstones to your eye color to accentuate that special sparkle in your eye
-				 </li>
-					
-				<li>
-					<b>Get Eclectic</b><br>
-					Matching your earrings to your necklace is always elegant; but don't be afraid to mix things up with different colors and textures!
-				</li>
-				
-				<li>
-					<b>Instant Glamour</b><br>
-					Transform your little black dress with a hit of sparkly color. A bold pendant necklace or colorful earrings add effortless flair to a simple chic outfit.
-				</li>
-				
-				<li>
-					<b>Go Green!</b><br>
-					Angelina Jolie, Reese Witherspoon, and Amy Adams are just a few celebrities who have recently sported gorgeous emerald earrings on the red carpet. Green gemstones are eye-catching and a hot color for this spring.			
-				</li>
-			</ul>
-		</div><!-- #slider3 -->
+
 	
-		<div id="slider4" class="col last unoSlider">
-			<div class="slider-header">
-				<span>No Trasition + Auto</span>
-			</div>
-			<ul>
-				<li class="current">
-					<b>Necklace Know-How</b><br>Not sure how long of a necklace to wear? The pendant should drop on the collarbone for a demure look. If you're feeling really sexy, try a longer chain that goes down to your décolletage.
-				</li>
-					
-				<li>
-					<b>Enhance Your Eyes</b><br>
-					Are your eyes your best feature? Match your gemstones to your eye color to accentuate that special sparkle in your eye
-				 </li>
-					
-				<li>
-					<b>Get Eclectic</b><br>
-					Matching your earrings to your necklace is always elegant; but don't be afraid to mix things up with different colors and textures!
-				</li>
-				
-				<li>
-					<b>Instant Glamour</b><br>
-					Transform your little black dress with a hit of sparkly color. A bold pendant necklace or colorful earrings add effortless flair to a simple chic outfit.
-				</li>
-				
-				<li>
-					<b>Go Green!</b><br>
-					Angelina Jolie, Reese Witherspoon, and Amy Adams are just a few celebrities who have recently sported gorgeous emerald earrings on the red carpet. Green gemstones are eye-catching and a hot color for this spring.			
-				</li>
-			</ul>
-		</div><!-- #slider4 -->
-	
-	</div><!-- .columns -->
-
+	<!-- AddThis Button END -->
 
 	<div id="documentation" class="block">
 		<ul class="tabs">
@@ -270,16 +249,16 @@
 				<h4 class="section-heading">Plugin Options</h4>
 				<p>Any of the following options can be passed in to alter the behavior of the slider. </p>
 				<pre>
-animSpeed:  250,
-speed:      5,	//seconds
-auto:       true,
-easing:     'swing',
-next:       false,
-prev:       false,
-prev:       false,
-pause:      false,
-bullets:    false,
-callback:   function()
+animSpeed:  250,           // animation speed for the transition
+speed:      5,	           // seconds
+auto:       true,          // false stops the slider from auto rotating
+easing:     'swing',       // 'linear' or 'swing'. Can be extended with jQuery Easing Plugin
+next:       false,         // '#next' &mdash; optional selector for the next button
+prev:       false,         // '#prev' &mdash; optional selector for the previous button
+pause:      false,         // '#pause' &mdash; optional selector for the pause button
+bullets:    false,         // wether to show bulleted navigation or not.
+selector:   'li'           // which child selector to use when looking for slides. Default is 'li'. 
+callback:   function(){}   // used to fire a callback after each transition. "this" within this function is the current index
 </pre>
 			</li> <!-- #tab-api -->
 			
@@ -327,11 +306,25 @@ callback:   function()
 			
 			
 		</ul><!-- .tab-content -->
+
+
+		<!-- AddThis Button BEGIN -->
+		<div class="addthis_toolbox addthis_default_style block">
+			<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+			<a class="addthis_button_tweet"></a>
+			<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+			<a class="addthis_counter addthis_pill_style"></a>
+			
+			<a href="https://twitter.com/npolanco10" class="twitter-follow-button" data-show-count="false" style="margin-left:10px ">Follow @npolanco10</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+		</div>
+
+		<div id="content-footer">
+			<p class="disclaimer">Slider images generously provided by <a href="http://sumless.tumblr.com/" target="_blank" rel="no-follow">Sumtography</a> | &copy; Sumtography. All rights reserved.</p>
+	</div>
 	</div><!-- #documentation -->
 	
-	<div id="content-footer">
-		<p class="disclaimer">Slider images generously provided by <a href="http://sumless.tumblr.com/" target="_blank" rel="no-follow">Sumtography</a> | &copy; Sumtography. All rights reserved.</p>
-	</div>
+	
 	
 
 	
@@ -344,22 +337,9 @@ callback:   function()
 <!-- JS (jQuery with Local Fallback)-->
 <script src="js/jquery-1.7.1.min.js"></script>
 <script src="js/easing.js"></script>
-<script src="js/unoSlider-1.0.min.js"></script>
+<script src="js/unoSlider-1.0.1.min.js"></script>
 <script src="js/scripts.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function() {
-  // Sample Slider
-  window.npSlide = $('#slider1').unoSlider(); //default 5 seconds
-}); //ready
-</script>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=kalel06"></script>
 
 <!-- ASync Tracking -->
 <script type="text/javascript">

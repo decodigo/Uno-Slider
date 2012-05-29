@@ -1,12 +1,24 @@
 (function(d){
 	$(d).ready(function() {
-  		  window.npSlide2 = $('#slider2').unoSlider({ 
-		  	animSpeed: 400, 
-		  	easing: 'easeInOutCirc', 
-		  	next: '#slider2Next', 
-		  	prev: '#slider2Back',
-		  	speed: 8
-		  });
+
+		//Analytics for the Download btn
+		$('.download-btn').live('click', function() {
+			// Click Handler for .download-btn.
+			_gaq.push(['_trackPageview', '/download/']);
+		});
+
+		window.npSlide = $('#slider1').unoSlider({
+		  	speed: 10
+		}); //default 5 seconds
+
+		window.npSlide2 = $('#slider2').unoSlider({ 
+			animSpeed: 400, 
+			easing: 'easeInOutCirc', 
+			next: '#slider2Next', 
+			prev: '#slider2Back',
+			speed: 8
+			// transition: 'fade'
+		});
 		  
 		window.npSlide3 = $('#slider3').unoSlider({ 
 			animSpeed: 400, 
@@ -25,6 +37,7 @@
 		//Tabs
 		window.docTabs = $('.tab-content').unoSlider({ 
 			auto: false,
+			animSpeed: 120,
 			callback: function(){
 				docTabs.setHeight(parseInt(this));
 			}
