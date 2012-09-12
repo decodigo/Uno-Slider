@@ -19,7 +19,8 @@
 	                        pause: false,
 	                        bullets: false,
 	                        selector: 'li',
-	                        callback: function(){}
+                            callback: function(){},
+                            width: 300
                         };
 	                            
         options = $.extend({}, defaults, options);
@@ -27,6 +28,7 @@
 	    // SETUP private variabls;
         var s           = this;
         s.$views        = $( s.find(options.selector) ).addClass('sliderView');
+        s.$views.css({ width: options.width });
         s.$nav          = $( s.find('.unoSliderNav') );
         s.navItems      = [];
         s.viewWidth     = s.width();
