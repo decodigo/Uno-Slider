@@ -2,7 +2,7 @@
 	$.fn.unoSlider = function(options) {
 	    // support multiple elements
 	    if (this.length > 1){
-	        this.each(function() { $(this).unoSlider(options) });
+            this.each(function() { $(this).unoSlider(options); });
 	        return this;
 	    }
 	
@@ -15,7 +15,6 @@
 	                        easing: 'swing',
 	                        next: false,
 	                        prev: false,
-	                        prev: false,
 	                        transition: 'slide',
 	                        pause: false,
 	                        bullets: false,
@@ -23,7 +22,7 @@
 	                        callback: function(){}
                         };
 	                            
-	    var options = $.extend({}, defaults, options);
+        options = $.extend({}, defaults, options);
 	    
 	    // SETUP private variabls;
         var s           = this;
@@ -70,7 +69,7 @@
 					
 			initSlide(prev, next); //pass in previous index 
 			s.resetTimer();
-		}	//Bullets Click
+        };   //Bullets Click
 		
 		
 		//Set Current
@@ -78,20 +77,20 @@
 			//remove the "current" class from all elements
 			s.$views.add(s.navItems).each(function(){
 				this.removeClass('current');
-			})
+            });
 			
 			//Add "current" class to the items with the index that was passe in
 			$(s.$views[idx]).add($(s.navItems[idx])).addClass('current');
 			//Set current
 			s.current = s.$views[idx];
-		} //Set Current
+        }; //Set Current
 		
 		var initSlide = function(prev, next){
 			//If this is the last view, set next as the first view so that it loops around
 			if(next >= s.$views.length){
 				next = 0;
 			}else if( next < 0  ){
-				next = s.$views.length-1
+                next = s.$views.length-1;
 			}
 			
 			if( prev < next ){
@@ -105,12 +104,12 @@
 		       options.callback.call(next); // passback the current index
 		    }
 			setCurrent(next);
-		}	//initSlide
+        };   //initSlide
 		
 		if(options.next){
 			$(options.next).live('click', function(e) {
 			  // Live handler called.
-			  e.preventDefault()
+              e.preventDefault();
 			  s.goForward();
 			});
 		}
@@ -118,7 +117,7 @@
 		if(options.prev){
 			$(options.prev).live('click', function(e) {
 			  // Live handler called.
-			  e.preventDefault()
+              e.preventDefault();
 			  s.goBack();
 			});
 		}
@@ -174,20 +173,19 @@
 	    };
 	    
 	    s.startTimer = function(){
-	    	s.t = setInterval(function(){
+            s.t = window.setInterval(function(){
 	    		if(options.auto){
 	    			s.goForward();
 	    		}
-				
 			}, s.timerSpeed);
-	    }
+        };
 	    s.killTimer = function(){
-	    	clearInterval(s.t)
-	    }
+            window.clearInterval(s.t);
+        };
 	    s.resetTimer = function(){
 	    	s.killTimer();
 	    	s.startTimer();
-	    }
+        };
 	    
 	    s.goForward = function(){
 	    	//go forward one view forward
@@ -195,7 +193,7 @@
 	    			next = prev+1; //Current Bullet's index	
 					
 			initSlide(prev, next);
-	    }
+        };
 	    
 	    s.goBack = function(){
 	    	//go back one view forward
@@ -203,7 +201,7 @@
 	    			next = prev-1; //Current Bullet's index	
 					
 			initSlide(prev, next);
-	    }
+        };
 	    
 	    s.goTo = function(i /*num*/){
 	    	//go specific view
@@ -211,11 +209,9 @@
 	    			next = i-1; //Current Bullet's index	
 					
 			initSlide(prev, next);
-	    }
+        };
 	
 	    return this.initialize();
-	}//End namespace $.fn.unoSlider
-	
-
+    };  //End namespace $.fn.unoSlider
 	
 })(jQuery);
