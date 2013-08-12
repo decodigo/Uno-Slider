@@ -8,20 +8,20 @@
 
         // setup options
         var defaults = {
-                            //default options go here.
-                            animSpeed: 250,
-                            speed: 5,   //seconds
-                            auto: true,
-                            easing: 'swing',
-                            next: false,
-                            prev: false,
-                            transition: 'slide',
-                            pause: false,
-                            bullets: false,
-                            selector: 'li',
-                            callback: function(){},
-                            width: 300
-                        };
+            //default options go here.
+            animSpeed: 250,
+            speed: 5,   //seconds
+            auto: true,
+            easing: 'swing',
+            next: false,
+            prev: false,
+            transition: 'slide',
+            pause: false,
+            bullets: false,
+            selector: 'li',
+            callback: function(){},
+            width: 300
+        };
 
         options = $.extend({}, defaults, options);
 
@@ -44,7 +44,7 @@
 
         //Loop through each view
         for(var i=0; i < s.$views.length; i++){
-            var $view           = $(s.$views[i]);
+            var $view           = $(s.$views[i]),
                 $bullet         = $('<span>&bull;</span>');     //Create a bullet
 
             //Create a jQuery object out of the view
@@ -102,7 +102,7 @@
             } //if else prev >next
 
 
-            if (typeof options.callback == 'function') { // make sure the callback is a function
+            if (typeof options.callback === 'function') { // make sure the callback is a function
                options.callback.call(next); // passback the current index
             }
             setCurrent(next);
@@ -113,6 +113,7 @@
               // Live handler called.
               e.preventDefault();
               s.goForward();
+              s.resetTimer();
             });
         }
 
@@ -121,6 +122,7 @@
               // Live handler called.
               e.preventDefault();
               s.goBack();
+              s.resetTimer();
             });
         }
 
