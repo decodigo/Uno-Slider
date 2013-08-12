@@ -2,6 +2,7 @@
 v 1.0.3
 =====================
 
+- Renamed Main file (removed version number)
 - Passes JSHint
 - resetTimer on next/prev click, properly init $bullet (thanks @esteinborn)
 - Normalized whitespaces and indentation
