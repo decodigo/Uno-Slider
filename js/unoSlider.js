@@ -7,7 +7,7 @@
  */
 
 
-(function($){
+(function ($) {
     $.fn.unoSlider = function(options) {
         // support multiple elements
         if (this.length > 1){
@@ -17,20 +17,20 @@
 
         // setup options
         var defaults = {
-                            //default options go here.
-                            animSpeed: 250,
-                            speed: 5,   //seconds
-                            auto: true,
-                            easing: 'swing',
-                            next: false,
-                            prev: false,
-                            transition: 'slide',
-                            pause: false,
-                            bullets: false,
-                            selector: 'li',
-                            callback: function(){},
-                            width: 300
-                        };
+            //default options go here.
+            animSpeed: 250,
+            speed: 5,   //seconds
+            auto: true,
+            easing: 'swing',
+            next: false,
+            prev: false,
+            transition: 'slide',
+            pause: false,
+            bullets: false,
+            selector: 'li',
+            callback: function(){},
+            width: 300
+        };
 
         options = $.extend({}, defaults, options);
 
@@ -50,11 +50,14 @@
         s.current = s.$views[0];
         s.addClass('unoSlider');
 
+        var bulletClick = function(){
+            navClick($(this));
+        };
 
         //Loop through each view
         for(var i=0; i < s.$views.length; i++){
             var $view           = $(s.$views[i]);
-                $bullet         = $('<span>&bull;</span>');     //Create a bullet
+            var $bullet         = $('<span>&bull;</span>');     //Create a bullet
 
             //Create a jQuery object out of the view
             s.$views[i] = $view;
@@ -69,8 +72,9 @@
             s.navItems[i]= $bullet;
 
             //Bullet Click events
-            $bullet.bind('click', function(){ navClick($(this)); });
+            $bullet.bind('click', bulletClick);
         }//For each views
+
 
 
         //Bullets click Handler
@@ -111,7 +115,7 @@
             } //if else prev >next
 
 
-            if (typeof options.callback == 'function') { // make sure the callback is a function
+            if (typeof options.callback === 'function') { // make sure the callback is a function
                options.callback.call(next); // passback the current index
             }
             setCurrent(next);
