@@ -1,11 +1,10 @@
 /*
  * UnoSlider
  * This script is a plugin for jQuery
- * Version: 1.0.2
+ * Version: 1.0.3
  * Author: Nelson Polanco
  * http://unoslider.npmedia.net
  */
-
 
 (function ($) {
     $.fn.unoSlider = function(options) {
@@ -35,16 +34,16 @@
         options = $.extend({}, defaults, options);
 
         // SETUP private variabls;
-        var s          = this;
-        s.$views        = $( s.find(options.selector) ).addClass('sliderView');
+        var s = this;
+        s.$views = $( s.find(options.selector) ).addClass('sliderView');
         s.$views.css({ width: options.width });
-        s.$nav        = $( s.find('.unoSliderNav') );
-        s.navItems    = [];
-        s.viewWidth  = s.width();
-        s.animTimer  = options.animSpeed;
-        s.timerSpeed    = options.speed*1000;
-        s.easing        = options.easing;
-        s.transition    = options.transition;
+        s.$nav = $( s.find('.unoSliderNav') );
+        s.navItems = [];
+        s.viewWidth = s.width();
+        s.animTimer = options.animSpeed;
+        s.timerSpeed = options.speed*1000;
+        s.easing = options.easing;
+        s.transition = options.transition;
 
         //Set the current Slide
         s.current = s.$views[0];
@@ -56,16 +55,14 @@
 
         //Loop through each view
         for(var i=0; i < s.$views.length; i++){
-            var $view           = $(s.$views[i]);
-            var $bullet         = $('<span>&bull;</span>');     //Create a bullet
+            var $view = $(s.$views[i]);
+            var $bullet = $('<span>&bull;</span>');     //Create a bullet
 
             //Create a jQuery object out of the view
             s.$views[i] = $view;
 
             //Add the index as data to each view and bullet
             $view.add($bullet).data('idx', i);
-
-
 
             //Add bullets to nav and collect them in an array
             s.$nav.append($bullet);
@@ -75,17 +72,14 @@
             $bullet.bind('click', bulletClick);
         }//For each views
 
-
-
         //Bullets click Handler
         var navClick = function($b){
-            var next = $b.data('idx'), //Current Bullet's index
-                    prev = s.current.data('idx');
+            var next = $b.data('idx'); //Current Bullet's index
+            var prev = s.current.data('idx');
 
             initSlide(prev, next); //pass in previous index
             s.resetTimer();
         };   //Bullets Click
-
 
         //Set Current
         var setCurrent = function(idx){
@@ -114,10 +108,10 @@
                 animateBackwards(prev,next);
             } //if else prev >next
 
-
             if (typeof options.callback === 'function') { // make sure the callback is a function
                options.callback.call(next); // passback the current index
             }
+
             setCurrent(next);
         };   //initSlide
 
@@ -141,39 +135,39 @@
         Functions
         ***********************************/
         function animateForward(sl1, sl2){
-                //Animate Prev out
-                s.$views[sl1].stop().animate({
-                    'left': (s.viewWidth*-1)/4+'px',
-                    'opacity': '0'
-                },s.animTimer, s.easing ,function(){
-                    s.$views[sl1].css({'left':s.viewWidth+'px'});
-                });
+            //Animate Prev out
+            s.$views[sl1].stop().animate({
+                'left': (s.viewWidth*-1)/4+'px',
+                'opacity': '0'
+            },s.animTimer, s.easing ,function(){
+                s.$views[sl1].css({'left':s.viewWidth+'px'});
+            });
 
-                //Animate next in
-                s.$views[sl2].css({'left':s.viewWidth/4+'px'}).stop().animate({
+            //Animate next in
+            s.$views[sl2].css({'left':s.viewWidth/4+'px'}).stop().animate({
                     'left':'0',
                     'opacity':'1'
-                  },s.animTimer, s.easing, function(){
-                    //setCurrent(next);
-                });
+                },s.animTimer, s.easing, function(){
+            });
 
         }
-        function animateBackwards(sl1, sl2){
-                //Animate prev out
-                s.$views[sl1].stop().animate({
-                        'left':s.viewWidth/4+'px',
-                        'opacity':'0'
-                    },s.animTimer, s.easing, function(){
-                        s.$views[sl1].css({'left': s.viewWidth/4+'px'});
-                });
 
-                //Animate Next in
-                s.$views[sl2].css({'left': (s.viewWidth*-1)/4+'px'}).stop().animate({
-                            'left':'0',
-                            'opacity': '1'
-                        },s.animTimer, s.easing, function(){
-                            //setCurrent(next);
-                });
+        function animateBackwards(sl1, sl2){
+            //Animate prev out
+            s.$views[sl1].stop().animate({
+                    'left':s.viewWidth/4+'px',
+                    'opacity':'0'
+                },s.animTimer, s.easing, function(){
+                    s.$views[sl1].css({'left': s.viewWidth/4+'px'});
+            });
+
+            //Animate Next in
+            s.$views[sl2].css({'left': (s.viewWidth*-1)/4+'px'}).stop().animate({
+                    'left':'0',
+                    'opacity': '1'
+                },s.animTimer, s.easing, function(){
+                    //setCurrent(next);
+            });
         }
 
 
@@ -198,9 +192,11 @@
                 }, s.timerSpeed);
             }
         };
+
         s.killTimer = function(){
             window.clearInterval(s.t);
         };
+
         s.resetTimer = function(){
             s.killTimer();
             s.startTimer();
