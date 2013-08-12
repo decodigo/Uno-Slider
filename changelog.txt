@@ -1,9 +1,25 @@
 =====================
+v 1.0.3
+=====================
+
+- Passes JSHint
+- resetTimer on next/prev click, properly init $bullet (thanks @esteinborn)
+- Normalized whitespaces and indentation
+
+
+=====================
+v 1.0.2
+=====================
+
+- Specify a width for the slider.
+
+
+=====================
 v 1.0.1
 =====================
 
 JS
-- You can now specify a selector for the slides when initializing the slider. 
+- You can now specify a selector for the slides when initializing the slider.
 
 CSS
 - Fixed z-index for the current slide.
