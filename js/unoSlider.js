@@ -120,6 +120,7 @@
               // Live handler called.
               e.preventDefault();
               s.goForward();
+              s.resetTimer();
             });
         }
 
@@ -128,6 +129,7 @@
               // Live handler called.
               e.preventDefault();
               s.goBack();
+              s.resetTimer();
             });
         }
 
