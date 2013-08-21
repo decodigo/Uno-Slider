@@ -1,7 +1,7 @@
 /*
  * UnoSlider
  * This script is a plugin for jQuery
- * Version: 1.0.3
+ * Version: 1.0.4
  * Author: Nelson Polanco
  * http://unoslider.npmedia.net
  */
@@ -28,7 +28,7 @@
             bullets: false,
             selector: 'li',
             callback: function(){},
-            width: 300
+            width: false
         };
 
         options = $.extend({}, defaults, options);
@@ -36,6 +36,7 @@
         // SETUP private variabls;
         var s = this;
         s.$views = $( s.find(options.selector) ).addClass('sliderView');
+        s.css({ width: options.width });
         s.$views.css({ width: options.width });
         s.$nav = $( s.find('.unoSliderNav') );
         s.navItems = [];
