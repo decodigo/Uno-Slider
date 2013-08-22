@@ -8,17 +8,17 @@
 
 (function ($) {
     $.fn.unoSlider = function(options) {
-        // support multiple elements
+        // Support multiple elements
         if (this.length > 1){
             this.each(function() { $(this).unoSlider(options); });
             return this;
         }
 
-        // setup options
+        // Setup options
         var defaults = {
-            //default options go here.
+            // Default options go here
             animSpeed: 250,
-            speed: 5,   //seconds
+            speed: 5,   // Seconds
             auto: true,
             easing: 'swing',
             next: false,
@@ -33,7 +33,7 @@
 
         options = $.extend({}, defaults, options);
 
-        // SETUP private variabls;
+        // Setup private variables
         var s = this;
         s.$views = $( s.find(options.selector) ).addClass('sliderView');
         s.css({ width: options.width });
@@ -46,7 +46,7 @@
         s.easing = options.easing;
         s.transition = options.transition;
 
-        //Set the current Slide
+        // Set the current slide
         s.current = s.$views[0];
         s.addClass('unoSlider');
 
@@ -54,49 +54,49 @@
             navClick($(this));
         };
 
-        //Loop through each view
+        // Loop through each view
         for(var i=0; i < s.$views.length; i++){
             var $view = $(s.$views[i]);
-            var $bullet = $('<span>&bull;</span>');     //Create a bullet
+            var $bullet = $('<span>&bull;</span>'); // Create a bullet
 
-            //Create a jQuery object out of the view
+            // Create a jQuery object out of the view
             s.$views[i] = $view;
 
-            //Add the index as data to each view and bullet
+            // Add the index as data to each view and bullet
             $view.add($bullet).data('idx', i);
 
-            //Add bullets to nav and collect them in an array
+            // Add bullets to nav and collect them in an array
             s.$nav.append($bullet);
             s.navItems[i]= $bullet;
 
-            //Bullet Click events
+            // Bullet click events
             $bullet.bind('click', bulletClick);
-        }//For each views
+        } // For each views
 
-        //Bullets click Handler
+        // Bullets click handler
         var navClick = function($b){
-            var next = $b.data('idx'); //Current Bullet's index
+            var next = $b.data('idx'); // Current bullet's index
             var prev = s.current.data('idx');
 
-            initSlide(prev, next); //pass in previous index
+            initSlide(prev, next); // Pass in previous index
             s.resetTimer();
-        };   //Bullets Click
+        }; // Bullets click
 
-        //Set Current
+        // Set current
         var setCurrent = function(idx){
-            //remove the "current" class from all elements
+            // Remove the "current" class from all elements
             s.$views.add(s.navItems).each(function(){
                 this.removeClass('current');
             });
 
-            //Add "current" class to the items with the index that was passe in
+            // Add "current" class to the items with the index that was passed in
             $(s.$views[idx]).add($(s.navItems[idx])).addClass('current');
-            //Set current
+            // Set current
             s.current = s.$views[idx];
-        }; //Set Current
+        }; // setCurrent
 
         var initSlide = function(prev, next){
-            //If this is the last view, set next as the first view so that it loops around
+            // If this is the last view, set next as the first view so that it loops around
             if(next >= s.$views.length){
                 next = 0;
             }else if( next < 0  ){
@@ -107,18 +107,18 @@
                 animateForward(prev, next);
             } else if (prev > next){
                 animateBackwards(prev,next);
-            } //if else prev >next
+            } // if else prev > next
 
-            if (typeof options.callback === 'function') { // make sure the callback is a function
-               options.callback.call(next); // passback the current index
+            if (typeof options.callback === 'function') { // Make sure the callback is a function
+               options.callback.call(next); // Pass back the current index
             }
 
             setCurrent(next);
-        };   //initSlide
+        }; // initSlide
 
         if(options.next){
             $(options.next).live('click', function(e) {
-              // Live handler called.
+              // Live handler called
               e.preventDefault();
               s.goForward();
               s.resetTimer();
@@ -127,7 +127,7 @@
 
         if(options.prev){
             $(options.prev).live('click', function(e) {
-              // Live handler called.
+              // Live handler called
               e.preventDefault();
               s.goBack();
               s.resetTimer();
@@ -138,7 +138,7 @@
         Functions
         ***********************************/
         function animateForward(sl1, sl2){
-            //Animate Prev out
+            // Animate prev out
             s.$views[sl1].stop().animate({
                 'left': (s.viewWidth*-1)/4+'px',
                 'opacity': '0'
@@ -146,7 +146,7 @@
                 s.$views[sl1].css({'left':s.viewWidth+'px'});
             });
 
-            //Animate next in
+            // Animate next in
             s.$views[sl2].css({'left':s.viewWidth/4+'px'}).stop().animate({
                     'left':'0',
                     'opacity':'1'
@@ -156,7 +156,7 @@
         }
 
         function animateBackwards(sl1, sl2){
-            //Animate prev out
+            // Animate prev out
             s.$views[sl1].stop().animate({
                     'left':s.viewWidth/4+'px',
                     'opacity':'0'
@@ -164,12 +164,12 @@
                     s.$views[sl1].css({'left': s.viewWidth/4+'px'});
             });
 
-            //Animate Next in
+            // Animate Next in
             s.$views[sl2].css({'left': (s.viewWidth*-1)/4+'px'}).stop().animate({
                     'left':'0',
                     'opacity': '1'
                 },s.animTimer, s.easing, function(){
-                    //setCurrent(next);
+                // setCurrent(next);
             });
         }
 
@@ -178,7 +178,7 @@
         Public Functions
         ***************************************/
         s.initialize = function() {
-            //first run? set the current as the first item
+            // First run? Set the current as the first item
             if(this.length > 0){
                 setCurrent(0);
                 s.startTimer();
@@ -189,9 +189,7 @@
         s.startTimer = function(){
             if(options.auto){
                 s.t = window.setInterval(function(){
-
                         s.goForward();
-
                 }, s.timerSpeed);
             }
         };
@@ -206,30 +204,30 @@
         };
 
         s.goForward = function(){
-            //go forward one view forward
+            // Go forward one view forward
             var prev = s.current.data('idx'),
-                    next = prev+1; //Current Bullet's index
+                    next = prev+1; // Current bullet's index
 
             initSlide(prev, next);
         };
 
         s.goBack = function(){
-            //go back one view forward
+            // Go back one view forward
             var prev = s.current.data('idx'),
-            next = prev-1; //Current Bullet's index
+            next = prev-1; // Current bullet's index
 
             initSlide(prev, next);
         };
 
         s.goTo = function(i /*num*/){
-            //go specific view
+            // Go specific view
             var prev = s.current.data('idx'),
-                    next = i-1; //Current Bullet's index
+                    next = i-1; // Current bullet's index
 
             initSlide(prev, next);
         };
 
         return this.initialize();
-    };  //End namespace $.fn.unoSlider
+    };  // End namespace $.fn.unoSlider
 
 })(jQuery);

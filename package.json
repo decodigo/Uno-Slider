@@ -1,0 +1,24 @@
+{
+  "name": "Uno-Slider",
+  "title": "Uno Slider",
+  "version": "1.0.4",
+  "author": "Nelson Polanco",
+  "description": "UnoSlider is a jQuery plugin for creating simple, yet elegant and versatile content sliders. It's great for when you need to get a slider going in a jiffy, yet it has enough depth to create news tickers and tabs. All without overwhelming you with options and features you don't need.",
+  "demo": "http://unoslider.decodigothemes.com/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/decodigo/Uno-Slider.git"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.4.3",
+    "grunt-contrib-watch": "~0.3.1",
+    "grunt-contrib-uglify": "~0.2.0",
+    "grunt-contrib-cssmin": "~0.6.0",
+    "grunt-contrib-csslint": "~0.1.2"
+  },
+  "license": {
+    "type": "MIT",
+    "url": "https://github.com/github.com/decodigo/blob/master/license.md"
+  }
+}
