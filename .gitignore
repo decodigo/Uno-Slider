@@ -69,3 +69,4 @@ sftp-config.json
 /PIE.php
 /img/
 /.DS_Store
+/node_modules
